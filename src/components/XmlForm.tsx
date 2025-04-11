@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Form from '@rjsf/core';
+import validator from '@rjsf/validator-ajv8';  // Correct validator import
 import { personSchema } from '../schemas/personSchema';
 import { formDataToXml } from '../utils/formDataToXml';
 
@@ -13,7 +14,11 @@ const XmlForm = () => {
 
   return (
     <div>
-      <Form schema={personSchema} onSubmit={handleSubmit} />
+      <Form
+        schema={personSchema}
+        validator={validator} 
+        onSubmit={handleSubmit}
+      />
       {xmlOutput && (
         <div>
           <h2>Generated XML</h2>
@@ -25,4 +30,3 @@ const XmlForm = () => {
 };
 
 export default XmlForm;
-
